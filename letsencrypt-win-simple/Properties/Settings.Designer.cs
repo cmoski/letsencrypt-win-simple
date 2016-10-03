@@ -79,7 +79,7 @@ namespace LetsEncrypt.ACME.Simple.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("WebHosting")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Personal")]
         public string CertificateStore {
             get {
                 return ((string)(this["CertificateStore"]));
@@ -92,6 +92,24 @@ namespace LetsEncrypt.ACME.Simple.Properties {
         public bool CleanupFolders {
             get {
                 return ((bool)(this["CleanupFolders"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\letsencrypt_config")]
+        public string ConfigPath {
+            get {
+                return ((string)(this["ConfigPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool RestartRRASOnRenew {
+            get {
+                return ((bool)(this["RestartRRASOnRenew"]));
             }
         }
     }

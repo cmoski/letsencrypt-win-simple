@@ -107,7 +107,24 @@ namespace LetsEncrypt.ACME.Simple
             _settings = new Settings(ClientName, BaseUri);
             Log.Debug("{@_settings}", _settings);
             _configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ClientName,
-                CleanFileName(BaseUri));
+            CleanFileName(BaseUri));
+
+            try
+            {
+                if (Properties.Settings.Default.ConfigPath != "")
+                {
+                    _configPath = Path.Combine(Properties.Settings.Default.ConfigPath, ClientName,
+                     CleanFileName(BaseUri));
+                    Console.WriteLine("ConfigPath Store: " + _configPath);
+                    Log.Information("ConfigPath Store: {_configPath}", _configPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning(
+                    "Error reading ConfigPath from app config, defaulting to {_configPath} Error: {@ex}",
+                    _configPath, ex);
+            }
             Console.WriteLine("Config Folder: " + _configPath);
             Log.Information("Config Folder: {_configPath}", _configPath);
             Directory.CreateDirectory(_configPath);
